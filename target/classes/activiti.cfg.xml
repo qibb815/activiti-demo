@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+		<property name="databaseSchemaUpdate" value="true"/>
+		
+		<!-- 引擎默认名称为default，ProcessEngines.getDefaultProcessEngine()查询时会先检索main/resources，然后再检索test/resources的
+		activiti.cfg.xml和activiti-context.xml文件，所以当main/resources监测不到指定文件时就会导致该引擎被当做web应用的引擎对象，这样会导致有两个引擎
+		所以把引擎的名称改为非默认的“default”
+		
+		ProcessEngineConfiguration processEngineConfiguration = ProcessEngineConfiguration.createStandaloneProcessEngineConfiguration();
+		processEngineConfiguration.setJdbcDriver("com.mysql.jdbc.Driver");
+		processEngineConfiguration.setJdbcUrl("jdbc:mysql://localhost:3306/kad?useUnicode=true&amp;characterEncoding=utf-8");
+		processEngineConfiguration.setJdbcUsername("root");
+		processEngineConfiguration.setJdbcPassword("root");
+
+		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+		ProcessEngine processEngine = processEngineConfiguration.buildProcessEngine();
+		-->
+		
+		<property name="jdbcDriver" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/kad?useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="jdbcUsername" value="root" />
+		<property name="jdbcPassword" value="root" />
+		
+	</bean>
+</beans>
